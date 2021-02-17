@@ -1,8 +1,10 @@
 
-import 'dart:developer';
+
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_authentication_with_laravel_sanctum/providers/auth.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget{
   @override
@@ -17,9 +19,16 @@ class LoginScreen extends StatefulWidget{
    String _email;
    String _password;
 
-   void submit (){
-     log(_email);
-     log(_password);
+  void submit (){
+    Provider.of<Auth>(context, listen: false).login(
+      credentials: {
+        'email': _email,
+        'password': _password, 
+      }
+
+    );
+
+    Navigator.pop(context);
 
    }
 
@@ -35,6 +44,7 @@ class LoginScreen extends StatefulWidget{
               child: Column(
                 children: [
                   TextFormField(
+                    initialValue: 'alex@codecourse.com',
                     decoration: InputDecoration(
                       labelText:'Email',
                       hintText: 'you@somewhere.com',
@@ -44,6 +54,7 @@ class LoginScreen extends StatefulWidget{
                     },
                   ),
                   TextFormField(
+                    initialValue: 'password',
                     decoration: InputDecoration(
                       labelText: 'Password'
                     ),

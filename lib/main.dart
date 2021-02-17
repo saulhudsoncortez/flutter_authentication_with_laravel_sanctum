@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_authentication_with_laravel_sanctum/providers/auth.dart';
 import 'package:flutter_authentication_with_laravel_sanctum/widgets/nav-drawer.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(MyApp());
+
+
+
+void main()   {
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => Auth(),
+      child: MyApp(),
+
+    )
+  );
+ 
+  
 }
-
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -50,7 +62,16 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       drawer: NavDrawer(),
       body: Center(
-        child: Text('you are not logged in')
+        child: Consumer<Auth>(
+          builder: (context, auth, child){
+            if (auth.authenticated){
+              return Text('You are logged in');
+            }else{
+              return Text('You are not logged in');
+            }
+          }
+        )
+
       ),
        // This trailing comma makes auto-formatting nicer for build methods.
     );
