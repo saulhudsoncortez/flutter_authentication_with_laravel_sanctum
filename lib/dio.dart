@@ -6,7 +6,7 @@ Dio  dio(){
       baseUrl: 'http://127.0.0.1:8000/api',
       responseType: ResponseType.plain,
       headers: {
-        'accept': 'applications/json',
+        'accept': 'applications/json',0
         'content-type': 'application/json',
       }
     )
