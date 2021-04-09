@@ -6,13 +6,6 @@ import 'package:provider/provider.dart';
 
 
 
-void main()   {
-  runApp(
-    ChangeNotifierProvider(
-      create: (_) => Auth(),
-      child: MyApp(),
-
-    )
   );
  
   
@@ -78,20 +71,3 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      drawer: NavDrawer(),
-      body: Center(
-        child: Consumer<Auth>(
-          builder: (context, auth, child){
-            if (auth.authenticated){
-              return Text('You are logged in');
-            }else{
-              return Text('You are not logged in');
-            }
-          }
-        )
-
-      ),
