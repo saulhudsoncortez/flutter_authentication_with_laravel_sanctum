@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 import 'dart:developer';
 
@@ -18,16 +20,14 @@ class  Auth extends ChangeNotifier{
     Dio.Response response = await dio().post(
       'auth/token',
       data: json.encode(credentials)
-    );
+      );
+  
+    String token = json.decode(response.toString())['token'];
 
-
-    String token = json.decode(response.toString()) ['token'];
-
-   log(token);
+    log(token);
+  
 
     notifyListeners();
-
-
   }
 
   void logout(){
