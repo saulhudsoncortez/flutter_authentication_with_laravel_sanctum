@@ -75,6 +75,21 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
        // This trailing comma makes auto-formatting nicer for build methods.
     );
+    drawer: NavDrawer(),
+      body: Center(
+        child: Consumer<Auth>(
+          builder: (context, auth, child){
+            if (auth.authenticated){
+              return Text('You are logged in');
+            }else{
+              return Text('You are not logged in');
+            }
+          }
+        )
+
+      ),
+       // This trailing comma makes auto-formatting nicer for build methods.
+    );
   }
 }
 
